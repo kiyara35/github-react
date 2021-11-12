@@ -1,0 +1,14 @@
+.output {
+    padding: 100px;
+    text-align: center;
+}
+
+h3, p {
+    color: #ffffff;
+
+}
+
+img {
+    width: 300px;
+    height: 300px;
+}

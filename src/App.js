@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {API} from "./config/config"
+import './App.css'
+import Output from "./components/Output"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [user, setUser] = useState('')
+    const [data, setData] = useState([])
+
+    const getUsers = async () => {
+        const req = await fetch(API + user)
+        const res = await req.json()
+        console.log(res)
+        setData(res)
+        setUser('')
+
+    }
+
+
+    return (
+        <div>
+            <form action="">
+                <input
+                    value={user}
+                    onChange={(e) => setUser(e.target.value)}
+                    type="text"/>
+
+                <button
+                    onClick={(event) => getUsers(user,event.preventDefault())}
+                >
+                    Search User
+                </button>
+            </form>
+
+                <Output data={data}/>
+
+
+
+
+
+        </div>
+    );
+};
 
 export default App;
